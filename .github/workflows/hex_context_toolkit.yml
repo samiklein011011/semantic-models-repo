@@ -23,3 +23,4 @@ jobs:
           token: ${{ secrets.HEX_API_TOKEN }}
           comment_on_pr: true
           hex_url: https://rc.hex.tech
+          config_file: ./hex_context.config.yml
