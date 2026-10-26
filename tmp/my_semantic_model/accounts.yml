@@ -1,0 +1,10 @@
+id: accounts
+base_sql_table: b2b_demo_data.prod.dim_accounts
+dimensions:
+- id: account_id
+  type: string
+  expr_sql: account_id
+  unique: true
+- id: account_name
+  type: string
+  expr_sql: account_name

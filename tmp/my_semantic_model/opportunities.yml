@@ -1,0 +1,21 @@
+id: opportunities
+base_sql_table: b2b_demo_data.prod.dim_opportunities
+dimensions:
+- id: opportunity_id
+  type: string
+  expr_sql: opportunity_id
+  unique: true
+- id: account_id
+  type: string
+  expr_sql: account_id
+- id: created_date
+  type: date
+  expr_sql: created_date
+measures:
+- id: opportunity_count
+  func_sql: COUNT(DISTINCT ${opportunity_id})
+relations:
+- id: opportunities__accounts
+  target: accounts
+  type: many_to_one
+  join_sql: account_id = ${opportunities__accounts}.account_id

@@ -1,0 +1,3 @@
+semanticProjects:
+  - id: sami_ossie_test
+    path: ./tmp/my_semantic_model

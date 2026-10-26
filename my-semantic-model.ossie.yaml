@@ -1,0 +1,60 @@
+version: 0.2.0.dev0
+name: my_semantic_model
+datasets:
+  - name: opportunities
+    source: b2b_demo_data.prod.dim_opportunities
+    primary_key:
+      - opportunity_id
+    fields:
+      - name: opportunity_id
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: opportunity_id
+      - name: account_id
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: account_id
+      - name: created_date
+        datatype: Date
+        dimension:
+          is_time: true
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: created_date
+  - name: accounts
+    source: b2b_demo_data.prod.dim_accounts
+    primary_key:
+      - account_id
+    fields:
+      - name: account_id
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: account_id
+      - name: account_name
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: account_name
+relationships:
+  - name: opportunities__accounts
+    from: opportunities
+    to: accounts
+    from_columns:
+      - account_id
+    to_columns:
+      - account_id
+metrics:
+  - name: opportunity_count
+    datatype: Integer
+    expression:
+      dialects:
+        - dialect: ANSI_SQL
+          expression: COUNT(DISTINCT opportunities.opportunity_id)
